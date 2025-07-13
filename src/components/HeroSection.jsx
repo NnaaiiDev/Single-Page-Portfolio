@@ -18,7 +18,7 @@ const HeroSection = () => {
                duration: 1.5
              }}
              className="text-5xl md:text-7xl lg:text-8xl font-bold z-10 mb-6 text-white">
-               Building Fast <br /> Reliable Results 
+               Excellence <br /> And  Virtue
              </motion.h1>
 
              <motion.p 

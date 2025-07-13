@@ -121,12 +121,7 @@ const ContactSection = () => {
           </h1>
 
           <p className="text-black lg:w-[40rem] w-[20rem] absolute sm:mt-3 mt-1 md:scale-[0.1] scale-[0.068]">
-            I'm a programmer specializing in the Internet of Things (IoT), where
-            hardware and software converge to build smart, connected systems. I
-            design and deploy embedded solutions that integrate sensors,
-            microcontrollers, and network protocols—often with static IP
-            configurations—to monitor environments, automate processes, and
-            transmit data efficiently.
+          I'm a programmer skilled in C#, Python, and Java, with a focus on front-end development using React, Vite, and Spline for 3D visuals. I integrate embedded systems like Arduino and ESP32 into interactive web interfaces, backed by experience with MongoDB, PHP, and MS Access.
           </p>
 
           <button className="px-10 py-2 rounded-xl bg-black hover:bg-white hover:text-black transition-all duration-500 scale-[0.1] absolute sm:mt-9 mt-7 text-nowrap">
