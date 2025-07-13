@@ -161,7 +161,7 @@ const ProjectsSection = () => {
   return (
     <section
       ref={sectionRef}
-      id="horizontal-section"
+      id="projects"
       className="relative py-20 bg-[#f6f6f6] overflow-hidden"
     >
       {/* Section Title */}

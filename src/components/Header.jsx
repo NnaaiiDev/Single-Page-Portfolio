@@ -42,23 +42,25 @@ export const Header = () => {
 
             {/* Desktop Navigation */}
             <nav className="lg:flex hidden space-x-8">
-                {["Home", "About", "Projects", "Experience", "Contact"].map((item,index) => (
-                    <motion.a 
-                    key={item}
-                    initial={{opacity: 0, y: -20}}
-                    animate={{opacity: 1, y: 0 }}
-                    transition={{
-                        type: "spring",
-                        stiffness: 100,
-                        damping: 15,
-                        delay: 0.7 + index * 0.2,
-                    }}
-                    className="relative text-gray-800 dark:text-gray-200 hover:violet-600 dark:hover:text-violet-400 font- transition-colors duration-300 group"
-                    href="#">
-                        {item} 
-                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-violet-600 group-hover:w-full transition-all duration-300"></span>
-                    </motion.a>
-                ))}
+            {["Home", "About", "Projects", /*"Experience",*/ "Contact"].map((item,index) => (
+            <motion.a 
+                key={item}
+                initial={{opacity: 0, y: -20}}
+                animate={{opacity: 1, y: 0 }}
+                transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 15,
+                delay: 0.7 + index * 0.2,
+                }}
+                className="relative text-gray-800 dark:text-gray-200 hover:violet-600 dark:hover:text-violet-400 font- transition-colors duration-300 group"
+                href={`#${item.toLowerCase()}`} // ✅ Dynamically create href
+            >
+                {item}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-violet-600 group-hover:w-full transition-all duration-300"></span>
+            </motion.a>
+            ))}
+
 
             </nav>
 
@@ -69,7 +71,7 @@ export const Header = () => {
                 initial={{opacity: 0, scale: 0.5}} 
                 animate={{opacity: 1, scale: 1}}
                 transition={{delay: 1.3, duration: 0.8}}
-                className="text-gray-70 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300" href="#">
+                className="text-gray-70 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300" href="https://github.com/NnaaiiDev">
                     <FiGithub className="w-5 h-5"/>
                 </motion.a>
 
@@ -77,7 +79,7 @@ export const Header = () => {
                 initial={{opacity: 0, scale: 0.5}} 
                 animate={{opacity: 1, scale: 1}}
                 transition={{delay: 1.3, duration: 0.8}}
-                className="text-gray-70 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300" href="#">
+                className="text-gray-70 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300" href="https://www.linkedin.com/in/ian-james-mendoza-70049327a/">
                     <FiTwitter className="w-5 h-5"/>
                 </motion.a>
 
@@ -85,7 +87,7 @@ export const Header = () => {
                 initial={{opacity: 0, scale: 0.5}} 
                 animate={{opacity: 1, scale: 1}}
                 transition={{delay: 1.3, duration: 0.8}}
-                className="text-gray-70 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300" href="#">
+                className="text-gray-70 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300" href="https://www.linkedin.com/in/ian-james-mendoza-70049327a/">
                     <FiLinkedin className="w-5 h-5"/>
                 </motion.a>
 
@@ -133,27 +135,31 @@ export const Header = () => {
  
         className="md:hidden overflow-hidden bg-white dark:bg-gray-900 shadoww-lg px-4 py-5 space-y-5">
             <nav className="flex flex-col space-y-3">
-                {["Home", "About", "Projects", "Experience", "Contact"].map((item)=>
-                (
+            {["Home", "About", "Projects", /*"Experience",*/ "Contact"].map((item) => (
+            <a
+                onClick={toggleMenu}
+                className="text-gray-300 font-medium py-2"
+                key={item}
+                href={`#${item.toLowerCase()}`} // ✅ Same dynamic href
+            >
+                {item}
+            </a>
+            ))}
 
-                    <a onClick={toggleMenu} className="text-gray-300 font-medium py-2" key={item} href="#">
-                        {item} 
-                    </a>
-                )) }
                 
             </nav>
 
             <div className="pt-4 border-t border-gray-2000 dark:border-gray-700">
                 <div className="flex space-x-5">
-                    <a href="#">
+                    <a href="https://github.com/NnaaiiDev">
                         <FiGithub className="h-5 w-5 text-gray-300" />      
                     </a>
 
-                                        <a href="#">
+                    <a href="https://www.linkedin.com/in/ian-james-mendoza-70049327a/">
                         <FiTwitter className="h-5 w-5 text-gray-300" />      
                     </a>
 
-                                        <a href="#">
+                    <a href="https://www.linkedin.com/in/ian-james-mendoza-70049327a/">
                         <FiLinkedin className="h-5 w-5 text-gray-300" />      
                     </a>
             

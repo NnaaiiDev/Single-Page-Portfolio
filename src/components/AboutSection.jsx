@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import gsap from "gsap";
+import {gsap} from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const AboutSection = () => {
@@ -81,7 +81,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section
+    <section id="about"
       ref={sectionRef}
       className="h-screen relative overflow-hidden bg-gradient-to-b from-black to-[#9a74cf50]"
     >
