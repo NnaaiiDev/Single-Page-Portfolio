@@ -37,7 +37,8 @@ const HeroSection = () => {
         </div>
 
         {/* Right Section */}
-        <Spline className="absolute xl:right-[-28%] right-0 top-[-20%] lg:top-0" scene="https://prod.spline.design/OuXN4Hg5nNeHUBWb/scene.splinecode" />
+        <Spline className="absolute xl:right-[-28%] right-0 top-[-20%] lg:top-0" scene="https://prod.spline.design/EtezW9TNA81TJM9t/scene.splinecode" />
+        {/*<Spline className="absolute xl:right-[-28%] right-0 top-[-20%] lg:top-0" scene="https://prod.spline.design/OuXN4Hg5nNeHUBWb/scene.splinecode" />*/}
 
      </section>
 
