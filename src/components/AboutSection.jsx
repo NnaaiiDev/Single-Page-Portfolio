@@ -120,11 +120,7 @@ const AboutSection = () => {
         className="absolute lg:bottom-[-20rem] md:bottom-[-10rem] bottom-[-20rem] left-0 w-full flex md:flex-row flex-col justify-between lg:px-24 px-5 items-center opacity-0"
       >
         <h3 className="text-sm md:text-2xl font-bold text-purple-200 z-50 lg:max-w-[45rem] max-w-[27rem] tracking-wider md:mt-20 sm:mt-[-40rem] mt-[-32rem]">
-          Hi, I'm Ian Mendoza, a proud graduate of Mapúa University with a strong
-          foundation in engineering and computer science. My passion lies in
-          developing intelligent, connected systems. I'm deeply focused on IoT
-          solutions and front-end web development that bring seamless user
-          experiences to life.
+        Hi, I'm Ian Mendoza, a student with a growing foundation in programming and IoT, currently studying at Mapúa University. I'm passionate about building intelligent systems that merge sensor data with interactive front-end experiences. My focus lies in creating seamless connections between hardware and user interfaces to deliver meaningful designs.
         </h3>
 
         <img
