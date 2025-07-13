@@ -128,8 +128,8 @@ const AboutSection = () => {
         </h3>
 
         <img
-          className="lg:h-[40rem] md:h-[25rem] h-[20rem] mix-blend-lighten"
-          src="/images/person.png"
+          className="lg:h-[40rem] md:h-[25rem] h-[20rem] mix-blend-harden"
+          src="/images/person3.png"
           alt="profile-img"
         />
       </div>
