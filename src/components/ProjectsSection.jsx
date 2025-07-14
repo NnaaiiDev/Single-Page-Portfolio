@@ -13,22 +13,22 @@ const ProjectsSection = () => {
   const projectImage = [
     {
       id: 1,
-      title: '3D Gaming Website',
+      title: '1st Year Project',
       imageSrc: '/images/project-1.png',
     },
     {
       id: 2,
-      title: 'Startup App',
+      title: '2nd Year Project',
       imageSrc: '/images/project-2.png',
     },
     {
       id: 3,
-      title: 'Portfolio Website',
+      title: '3rd Year Project',
       imageSrc: '/images/project-3.png',
     },
     {
       id: 4,
-      title: 'Award Winning Web',
+      title: '4th year Project/capstone',
       imageSrc: '/images/project-4.png',
     },
   ];
@@ -47,7 +47,7 @@ const ProjectsSection = () => {
         ease: 'power3.out',
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 80%',
+          start: 'top 60%', // Trigger later
           toggleActions: 'play none none reverse',
         },
       }
@@ -65,13 +65,13 @@ const ProjectsSection = () => {
         delay: 0.3,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 80%',
+          start: 'top 60%', // Trigger later
           toggleActions: 'play none none reverse',
         },
       }
     );
 
-    // Section entrance
+    // Section entrance animation
     gsap.fromTo(
       triggerRef.current,
       { y: 100, rotationX: 20, opacity: 0 },
@@ -84,13 +84,13 @@ const ProjectsSection = () => {
         delay: 0.2,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 70%',
+          start: 'top 40%', // Trigger later
           toggleActions: 'play none none reverse',
         },
       }
     );
 
-    // Parallax background
+    // Parallax background movement
     gsap.fromTo(
       sectionRef.current,
       { backgroundPosition: '50% 0' },
@@ -125,7 +125,7 @@ const ProjectsSection = () => {
       },
     });
 
-    // Per panel animations
+    // Individual panel animations
     const panels = gsap.utils.toArray('.panel');
     panels.forEach((panel) => {
       const image = panel.querySelector('.project-image');

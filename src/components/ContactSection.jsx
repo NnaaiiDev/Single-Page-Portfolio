@@ -37,7 +37,7 @@ const ContactSection = () => {
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top top",
+            start: "top 1%",
             end: "+=200%",
             pin: true,
             scrub: 0.5,
@@ -117,7 +117,7 @@ const ContactSection = () => {
           className="text-center relative flex flex-col items-center justify-center opacity-0"
         >
           <h1 className="text-black md:w-[10rem] w-[20rem] lg:scale-[0.4] sm:scale-[0.25] scale-[0.07] md:font-bold text-sm sm:text-base leading-none mb-5">
-            Step Into the Future with Ian Mendoza
+            My Programming Languages
           </h1>
 
           <p className="text-black lg:w-[40rem] w-[20rem] absolute sm:mt-3 mt-1 md:scale-[0.1] scale-[0.068]">
