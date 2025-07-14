@@ -192,7 +192,7 @@ const AboutSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             About Company
           </h2>
-          <p className="text-sm md:text-xl text-purple-200 max-w-4xl">
+          <p className="text-sm md:text-xl text-purple-200 max-w-4xl text-center">
             I am currently an Intern at STMicroelectronics, in Calamba, Laguna.
             STMicroelectronics is renowned for its high-tech semiconductor
             manufacturing operations. The company is dedicated to delivering
@@ -205,24 +205,24 @@ const AboutSection = () => {
         {/* Task Given & Hours Rendered */}
         <div
           ref={taskHoursRef}
-          className="w-full flex flex-col sm:flex-row justify-between items-start text-white gap-6 opacity-0"
+          className="w-full flex flex-col sm:flex-row justify-between items-start text-white gap-6 opacity-0 text-center"
         >
           {/* Task Given */}
           <div className="w-full sm:w-1/2">
             <h3 className="text-2xl md:text-4xl font-bold mb-2">
               Task Given
             </h3>
-            <p className="text-sm md:text-lg text-purple-200 text-left">
+            <p className="text-sm md:text-lg text-purple-200 text-left text-center">
               I was assigned to develop a system that automates the socket inventory process for both MEMS and Non-MEMS systems. The goal is to implement traceability for each socket so the production line can accurately identify and manage them. Currently, sockets are labeled with small QR codes or Data Matrix stickers that can be scanned using a barcode reader. With this system in place, personnel on the production floor will be able to efficiently determine the status of each socket whether it requires repair, is ready for use, or should be marked as obsolete. This will enhance operational efficiency and reduce errors caused by manual tracking.
             </p>
           </div>
 
           {/* Hours Rendered */}
-          <div className="w-full sm:w-1/2 text-right">
-            <h3 className="text-2xl md:text-4xl font-bold mb-2">
+          <div className="w-full sm:w-1/2 text-right ">
+            <h3 className="text-2xl md:text-4xl font-bold mb-2 text-center" >
               Hours Rendered
             </h3>
-            <p className="text-sm md:text-lg text-purple-200">
+            <p className="text-sm md:text-lg text-purple-200 text-center">
               I needed to complete 486 internship hours, starting with 42.5 hours of company orientation covering rules and regulations. After that, 100 hours were spent learning the operations of my department. I dedicated 150 hours to understanding the socket inventory automation project, followed by another 150 hours developing the system for MEMS and Non-MEMS sockets. The final hours were used to polish and finalize the project for deployment. Throughout the internship, I gained hands-on experience in system design and real-time traceability. It also deepened my understanding of how automation can enhance production efficiency and reliability.
             </p>
           </div>
