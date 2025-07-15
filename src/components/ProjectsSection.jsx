@@ -253,10 +253,10 @@ const ProjectsSection = () => {
       {/* Static section for Company Project */}
       <section className="py-20 bg-[#f6f6f6]">
         <div className="container mx-auto px-4 mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-4 ">
             Company Project
           </h2>
-          <div className="h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto w-full max-w-xs"></div>
+          <div className="h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto w-full max-w-xs "></div>
         </div>
         <div className="flex justify-center">
           <div className="relative w-full max-w-4xl flex flex-col items-center justify-center p-4 sm:p-8 md:p-12">
@@ -265,7 +265,7 @@ const ProjectsSection = () => {
               src={projectImage[0].imageSrc}
               alt="Company Project"
             />
-            <h2 className="text-center flex items-center justify-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-6 text-nowrap hover:text-red-400 transition-colors duration-300 cursor-pointer">
+            <h2 className="text-center flex items-center justify-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-6 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
               {projectImage[0].title} <SlShareAlt />
             </h2>
           </div>
