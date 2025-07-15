@@ -163,14 +163,15 @@ export const Header = () => {
           ))}
 
           {/* Special Download Button */}
-          <a
-            href="/files/IanMendozaCV.pdf"
-            download
+            <a
+            href="/images/cv-1.pdf"
+            download="IanMendozaCV.pdf"
             onClick={toggleMenu}
             className="mt-2 block px-4 py-2 bg-gradient-to-r from-violet-600 to-pink-500 text-white text-center font-semibold rounded-lg shadow hover:brightness-110 transition duration-300"
-          >
+            >
             📄 Download CV
-          </a>
+            </a>
+
         </nav>
 
         <div className="pt-4 border-t border-gray-200 dark:border-gray-700">

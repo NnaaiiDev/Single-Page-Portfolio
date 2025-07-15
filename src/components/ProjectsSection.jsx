@@ -4,10 +4,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SlShareAlt } from 'react-icons/sl';
 
 const ProjectsSection = () => {
+  // eslint-disable-next-line no-unused-vars
   const sectionRef1 = useRef(null);
+  // eslint-disable-next-line no-unused-vars
   const titleRef1 = useRef(null);
+  // eslint-disable-next-line no-unused-vars
   const titleLineRef1 = useRef(null);
+  // eslint-disable-next-line no-unused-vars
   const triggerRef1 = useRef(null);
+  // eslint-disable-next-line no-unused-vars
   const horizontalRef1 = useRef(null);
 
   const sectionRef2 = useRef(null);
