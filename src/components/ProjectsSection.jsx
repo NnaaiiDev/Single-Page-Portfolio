@@ -16,49 +16,67 @@ const ProjectsSection = () => {
   const triggerRef2 = useRef(null);
   const horizontalRef2 = useRef(null);
 
+  const sectionRef3 = useRef(null);
+  const titleRef3 = useRef(null);
+  const titleLineRef3 = useRef(null);
+  const triggerRef3 = useRef(null);
+  const horizontalRef3 = useRef(null);
+
   const projectImage = [
-    {
-      id: 1,
-      title: '1st Year Project',
-      imageSrc: '/images/project-1-1.png',
-    },
-    {
-      id: 2,
-      title: '2nd Year Project',
-      imageSrc: '/images/project-2.png',
-    },
-    {
-      id: 3,
-      title: '3rd Year Project',
-      imageSrc: '/images/project-3.png',
-    },
-    {
-      id: 4,
-      title: '4th Year Project/Capstone',
-      imageSrc: '/images/project-4.png',
-    },
+    { id: 1, title: 'Company Project', imageSrc: '/images/project-1-1.png' },
   ];
 
   const moreProjectImage = [
     {
       id: 'a',
-      title: 'Mobile App Design',
-      imageSrc: '/images/project-2.png',
+      title: 'Time Keeping',
+      imageSrc: '/images/timekeep.png',
+      link: 'https://github.com/Heracles404/employee-timekeep-IoT-NodeMCU-RFID',
     },
     {
       id: 'b',
-      title: 'API Integration Demo',
-      imageSrc: '/images/placeholder-2.png',
+      title: 'RFID barrier',
+      imageSrc: '/images/rfid.png',
+      link: 'https://github.com/Heracles404/RFID-Controlled-Barrier-Using-Arduino',
     },
     {
       id: 'c',
-      title: 'UI/UX Wireframes',
-      imageSrc: '/images/placeholder-3.png',
+      title: 'Visitor Count',
+      imageSrc: '/images/Visitor.png',
+      link: 'https://github.com/Heracles404/laser-visitor-counter-arduinouno-wemosD1',
     },
     {
       id: 'd',
-      title: 'Machine Learning Model',
-      imageSrc: '/images/placeholder-4.png',
+      title: 'Capstone System',
+      imageSrc: '/images/lems.png',
+      link: 'https://github.com/Heracles404/learning-environment-monitoring-system',
+    },
+  ];
+
+  const seminarCertificates = [
+    {
+      id: 's1',
+      title: 'CompTIA IT Fundamentals+',
+      imageSrc: '/images/compt.png',
+      link: 'https://www.credly.com/badges/ca8da3b9-b132-4133-9308-a482ebe63d10/public_url',
+    },
+    {
+      id: 's2',
+      title: 'AWS Academy Cloud Foundations',
+      imageSrc: '/images/aws.png',
+      link: 'https://www.credly.com/badges/e2cf9420-e457-4ac9-895d-245df5f21e98/public_url',
+    },
+    {
+      id: 's3',
+      title: 'CCNA: Introduction to Networks',
+      imageSrc: '/images/ccna.png',
+      link: 'https://www.credly.com/badges/06f3376c-dbe5-404a-bb6d-70caa7054641/public_url',
+    },
+    {
+      id: 's4',
+      title: 'Secure Google Cloud Network',
+      imageSrc: '/images/google.png',
+      link: 'https://www.credly.com/badges/088a64a5-dfc3-4919-b51a-7e36d157ef29/public_url',
     },
   ];
 
@@ -172,8 +190,8 @@ const ProjectsSection = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    setupAnimations(sectionRef1, titleRef1, titleLineRef1, triggerRef1, horizontalRef1, projectImage);
     setupAnimations(sectionRef2, titleRef2, titleLineRef2, triggerRef2, horizontalRef2, moreProjectImage);
+    setupAnimations(sectionRef3, titleRef3, titleLineRef3, triggerRef3, horizontalRef3, seminarCertificates);
   }, []);
 
   const renderSection = (refSet, title, images, sectionId) => (
@@ -201,8 +219,11 @@ const ProjectsSection = () => {
           className="horizontal-section flex md:w-[400%] w-[420%]"
         >
           {images.map((project) => (
-            <div
+            <a
               key={`${sectionId}-${project.id}`}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
               className="panel relative flex items-center justify-center w-full"
             >
               <div className="relative w-full h-full flex flex-col items-center justify-center p-4 sm:p-8 md:p-12">
@@ -212,10 +233,10 @@ const ProjectsSection = () => {
                   alt="Project-img"
                 />
                 <h2 className="project-title flex items-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-6 z-50 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
-                  {project.title} <SlShareAlt />
+                  {project.title} 
                 </h2>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
@@ -224,18 +245,28 @@ const ProjectsSection = () => {
 
   return (
     <>
-      {renderSection(
-        {
-          sectionRef: sectionRef1,
-          titleRef: titleRef1,
-          titleLineRef: titleLineRef1,
-          triggerRef: triggerRef1,
-          horizontalRef: horizontalRef1,
-        },
-        'Company Project',
-        projectImage,
-        'featured-projects'
-      )}
+      {/* Static section for Company Project */}
+      <section className="py-20 bg-[#f6f6f6]">
+        <div className="container mx-auto px-4 mb-16">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-4">
+            Company Project
+          </h2>
+          <div className="h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto w-full max-w-xs"></div>
+        </div>
+        <div className="flex justify-center">
+          <div className="relative w-full max-w-4xl flex flex-col items-center justify-center p-4 sm:p-8 md:p-12">
+            <img
+              className="project-image max-w-full max-h-full rounded-2xl object-cover"
+              src={projectImage[0].imageSrc}
+              alt="Company Project"
+            />
+            <h2 className="text-center flex items-center justify-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-6 text-nowrap hover:text-red-400 transition-colors duration-300 cursor-pointer">
+              {projectImage[0].title} <SlShareAlt />
+            </h2>
+          </div>
+        </div>
+      </section>
+
       {renderSection(
         {
           sectionRef: sectionRef2,
@@ -244,9 +275,22 @@ const ProjectsSection = () => {
           triggerRef: triggerRef2,
           horizontalRef: horizontalRef2,
         },
-        'More Projects',
+        'College Projects',
         moreProjectImage,
         'more-projects'
+      )}
+
+      {renderSection(
+        {
+          sectionRef: sectionRef3,
+          titleRef: titleRef3,
+          titleLineRef: titleLineRef3,
+          triggerRef: triggerRef3,
+          horizontalRef: horizontalRef3,
+        },
+        'Seminars & Certificates',
+        seminarCertificates,
+        'seminars-certificates'
       )}
     </>
   );
