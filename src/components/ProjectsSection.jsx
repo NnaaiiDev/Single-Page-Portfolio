@@ -203,9 +203,10 @@ const ProjectsSection = () => {
     <section
       ref={refSet.sectionRef}
       id={sectionId}
-      className="relative py-20 bg-[#f6f6f6] overflow-hidden"
+      className="relative pt-10 pb-12 sm:pt-14 sm:pb-16 bg-[#f6f6f6] overflow-hidden"
     >
-      <div className="container mx-auto px-4 mb-16 relative z-10">
+      <div className="container mx-auto px-4 mb-6 sm:mb-10 relative z-10">
+
         <h2
           ref={refSet.titleRef}
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-4 opacity-0"
@@ -231,7 +232,8 @@ const ProjectsSection = () => {
               rel="noopener noreferrer"
               className="panel relative flex items-center justify-center w-full"
             >
-              <div className="relative w-full h-full flex flex-col items-center justify-center p-4 sm:p-8 md:p-12">
+              <div className="relative w-full h-full flex flex-col items-center justify-center p-2 sm:p-6 md:p-10">
+
                 <img
                   className="project-image max-w-full max-h-full rounded-2xl object-cover"
                   src={project.imageSrc}
@@ -251,8 +253,9 @@ const ProjectsSection = () => {
   return (
     <>
       {/* Static section for Company Project */}
-      <section className="py-20 bg-[#f6f6f6]">
-        <div className="container mx-auto px-4 mb-16">
+        <section className="pt-10 pb-8 sm:pt-14 sm:pb-12 bg-[#f6f6f6]">
+          <div className="container mx-auto px-4 mb-6 sm:mb-10">
+
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-4 ">
             Company Project
           </h2>
