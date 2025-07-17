@@ -102,6 +102,8 @@ const ProjectsSection = () => {
       }
     );
 
+    
+
     gsap.fromTo(
       titleLineRef.current,
       { width: '0%', opacity: 0 },
@@ -158,7 +160,7 @@ const ProjectsSection = () => {
       scrollTrigger: {
         trigger: triggerRef.current,
         start: 'top top',
-        end: () => `+=${horizontalRef.current.offsetWidth + 300}`,
+        end: () => `+=${horizontalRef.current.offsetWidth + 800}`,
         pin: true,
         scrub: 1,
         snap: {
@@ -188,9 +190,27 @@ const ProjectsSection = () => {
       tl.fromTo(image, { scale: 0, rotate: -20 }, { scale: 1, rotate: 1, duration: 0.5 });
 
       if (imageTitle) {
-        tl.fromTo(imageTitle, { y: 30 }, { y: -100, duration: 0.3 }, 0.2);
+        tl.fromTo(imageTitle, { y: 30 }, { y: -130, duration: 0.3 }, 0.2);
       }
     });
+
+    // Add fade-out animation when scrolling into next section
+    gsap.fromTo(
+      triggerRef.current,
+      { opacity: 1 },
+      {
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'bottom bottom-=100', // adjust for when to start fading
+          end: 'bottom top+=200',     // adjust for how long it fades
+          scrub: true,
+        },
+      }
+    );
+
   };
 
   useEffect(() => {
@@ -253,27 +273,28 @@ const ProjectsSection = () => {
   return (
     <>
       {/* Static section for Company Project */}
-        <section className="pt-10 pb-8 sm:pt-14 sm:pb-12 bg-[#f6f6f6]">
-          <div className="container mx-auto px-4 mb-6 sm:mb-10">
-
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-4 ">
-            Company Project
-          </h2>
-          <div className="h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto w-full max-w-xs "></div>
-        </div>
-        <div className="flex justify-center">
-          <div className="relative w-full max-w-4xl flex flex-col items-center justify-center p-4 sm:p-8 md:p-12">
-            <img
-              className="project-image max-w-full max-h-full rounded-2xl object-cover"
-              src={projectImage[0].imageSrc}
-              alt="Company Project"
-            />
-            <h2 className="text-center flex items-center justify-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-6 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
-              {projectImage[0].title} 
+        <section id="projects" className="pt-10 pb-0 sm:pt-14 sm:pb-0 bg-[#f6f6f6]">
+          <div className="container mx-auto px-4 mb-0">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-0">
+              Company Project
             </h2>
+            <div className="h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto w-full max-w-xs" />
           </div>
-        </div>
-      </section>
+          <div className="flex justify-center mt-0">
+            <div className="relative w-full max-w-4xl flex flex-col items-center justify-center p-4 sm:p-8 md:p-12">
+              <img
+                className="project-image max-w-full max-h-full rounded-2xl object-cover"
+                src={projectImage[0].imageSrc}
+                alt="Company Project"
+              />
+              <h2 className="text-center flex items-center justify-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-4 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
+                {projectImage[0].title}
+              </h2>
+            </div>
+          </div>
+        </section>
+
+
 
       {renderSection(
         {
