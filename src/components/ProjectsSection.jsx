@@ -237,9 +237,10 @@ const ProjectsSection = () => {
                   src={project.imageSrc}
                   alt="Project-img"
                 />
-                <h2 className="project-title flex items-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-6 z-50 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
-                  {project.title}  <SlShareAlt />
+                <h2 className="project-title flex items-center gap-3 text-xs sm:text-sm md:text-lg md:font-bold text-black mt-6 z-50 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
+                  {project.title} <SlShareAlt />
                 </h2>
+
               </div>
             </a>
           ))}
@@ -250,12 +251,13 @@ const ProjectsSection = () => {
 
   return (
     <>
-      {/* Static section for Company Project */}
-      <section className="py-20 bg-[#f6f6f6]">
-        <div className="container mx-auto px-4 mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-4 ">
-            Company Project
-          </h2>
+        {/* Static section for Company Project */}
+        <section className="py-20 bg-[#f6f6f6]">
+          <div className="container mx-auto px-4 mb-8 sm:mb-12 md:mb-16">
+
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-80 ">
+              Company Project
+            </h2>
           <div className="h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto w-full max-w-xs "></div>
         </div>
         <div className="flex justify-center">
