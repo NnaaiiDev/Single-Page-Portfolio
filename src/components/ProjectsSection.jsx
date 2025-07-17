@@ -205,7 +205,8 @@ const ProjectsSection = () => {
       id={sectionId}
       className="relative py-20 bg-[#f6f6f6] overflow-hidden"
     >
-      <div className="container mx-auto px-4 mb-16 relative z-10">
+      <div className="container mx-auto px-4 mb-8 sm:mb-12 md:mb-16 relative z-10">
+
         <h2
           ref={refSet.titleRef}
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-4 opacity-0"

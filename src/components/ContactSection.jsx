@@ -124,9 +124,13 @@ const ContactSection = () => {
           I'm a programmer skilled in C#, Python, and Java, with a focus on front-end development using React, Vite, and Spline for 3D visuals. I integrate embedded systems like Arduino and ESP32 into interactive web interfaces, backed by experience with MongoDB, PHP, and MS Access.
           </p>
 
-          <button className="px-10 py-2 rounded-xl bg-black hover:bg-white hover:text-black transition-all duration-500 scale-[0.1] absolute sm:mt-9 mt-7 text-nowrap">
+          <button
+            onClick={() => window.dispatchEvent(new Event("openContactForm"))}
+            className="px-10 py-2 rounded-xl bg-black hover:bg-white hover:text-black transition-all duration-500 scale-[0.1] absolute sm:mt-9 mt-7 text-nowrap"
+          >
             Contact Me
           </button>
+
         </div>
       </div>
     </section>

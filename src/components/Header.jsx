@@ -1,31 +1,73 @@
-// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { FiGithub, FiTwitter, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
-import { useState } from "react";
+import { useState, useRef, useEffect} from "react";
+import emailjs from "@emailjs/browser";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const [contactFormOpen, setContactFormOpen] = useState(false);
-
   const openContactForm = () => setContactFormOpen(true);
   const closeContactForm = () => setContactFormOpen(false);
+
+  const formRef = useRef(null);
+
+  useEffect(() => {
+  const handleOpenContactForm = () => setContactFormOpen(true);
+
+  window.addEventListener("openContactForm", handleOpenContactForm);
+
+  return () => {
+    window.removeEventListener("openContactForm", handleOpenContactForm);
+  };
+}, []);
+
+
+const sendEmail = (e) => {
+  e.preventDefault();
+
+  const form = formRef.current;
+
+  const name = form.user_name.value;
+  const email = form.user_email.value;
+  const message = form.message.value;
+
+  // Combine into final message format
+  const combinedMessage = `${message}, from ${name}, ${email}`;
+
+  const templateParams = {
+    message: combinedMessage,
+  };
+
+  emailjs
+    .send(
+      "service_gq1yunk",       // your EmailJS service ID
+      "template_9k3pyot",      // your EmailJS template ID
+      templateParams,
+      "cjmTl5XbA7OPhEzkc"      // your EmailJS public key
+    )
+    .then(
+      () => {
+        alert("✅ Message sent successfully!");
+        form.reset();
+        closeContactForm();
+      },
+      () => {
+        alert("❌ Failed to send message. Please try again.");
+      }
+    );
+};
+
 
   return (
     <header className="absolute w-full z-50 transition-all duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
-        {/* Logo Name */}
+        {/* Logo */}
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{
-            type: "spring",
-            stiffness: 100,
-            damping: 25,
-            delay: 0.3,
-            duration: 1.2,
-          }}
+          transition={{ type: "spring", stiffness: 100, damping: 25, delay: 0.3, duration: 1.2 }}
           className="flex items-center"
         >
           <div className="h-10 w-10 rounded-xl bg-gradient-to-r from-gray-500 to-gray-100 flex items-center justify-center text-purple-600 font-bold text-xl mr-3">
@@ -36,99 +78,61 @@ export const Header = () => {
           </span>
         </motion.div>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Nav */}
         <nav className="lg:flex hidden space-x-8">
-        {["Home", "About", "Projects", "Contact", "Download CV"].map((item, index) =>
-        item === "Download CV" ? (
-            <motion.a
-            key={item}
-            href="/images/cv-1.pdf"  // 👈 This is your imageSrc
-            download="IanMendozaCV.pdf"   // 👈 Optional: custom filename
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-                type: "spring",
-                stiffness: 100,
-                damping: 15,
-                delay: 0.7 + index * 0.2,
-            }}
-            className="ml-1 relative left-20 px-4 py-2 bg-gradient-to-r from-violet-600 to-pink-500 text-white font-semibold rounded-full hover:brightness-110 transition duration-300 shadow-lg"
-            >
-            📄 {item}
-            </motion.a>
-        ) : (
-            <motion.a
-            key={item}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-                type: "spring",
-                stiffness: 100,
-                damping: 15,
-                delay: 0.7 + index * 0.2,
-            }}
-            className="relative text-gray-800 dark:text-gray-200 hover:text-violet-600 dark:hover:text-violet-400 font-medium transition-colors duration-300 group"
-            href={`#${item.toLowerCase()}`}
-            >
-            {item}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-violet-600 group-hover:w-full transition-all duration-300"></span>
-            </motion.a>
-        )
-        )}
-
+          {["Home", "About", "Projects", "Contact", "Download CV"].map((item, index) =>
+            item === "Download CV" ? (
+              <motion.a
+                key={item}
+                href="/images/cv-1.pdf"
+                download="IanMendozaCV.pdf"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.7 + index * 0.2 }}
+                className="ml-1 relative left-20 px-4 py-2 bg-gradient-to-r from-violet-600 to-pink-500 text-white font-semibold rounded-full hover:brightness-110 transition duration-300 shadow-lg"
+              >
+                📄 {item}
+              </motion.a>
+            ) : (
+              <motion.a
+                key={item}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.7 + index * 0.2 }}
+                className="relative text-gray-800 dark:text-gray-200 hover:text-violet-600 dark:hover:text-violet-400 font-medium transition-colors duration-300 group"
+                href={`#${item.toLowerCase()}`}
+              >
+                {item}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-violet-600 group-hover:w-full transition-all duration-300"></span>
+              </motion.a>
+            )
+          )}
         </nav>
 
-        {/* Social Icons - Desktop */}
+        {/* Social Links */}
         <div className="md:flex hidden items-center space-x-4">
-          <motion.a
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.3, duration: 0.8 }}
-            className="text-gray-70 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300"
-            href="https://github.com/NnaaiiDev"
-          >
+          <a href="https://github.com/NnaaiiDev" className="text-gray-700 dark:text-gray-300 hover:text-violet-600">
             <FiGithub className="w-5 h-5" />
-          </motion.a>
-
-          <motion.a
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.3, duration: 0.8 }}
-            className="text-gray-70 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300"
-            href="https://www.linkedin.com/in/ian-james-mendoza-70049327a/"
-          >
+          </a>
+          <a href="https://www.linkedin.com/in/ian-james-mendoza-70049327a/" className="text-gray-700 dark:text-gray-300 hover:text-violet-600">
             <FiTwitter className="w-5 h-5" />
-          </motion.a>
-
-          <motion.a
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.3, duration: 0.8 }}
-            className="text-gray-70 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300"
-            href="https://www.linkedin.com/in/ian-james-mendoza-70049327a/"
-          >
+          </a>
+          <a href="https://www.linkedin.com/in/ian-james-mendoza-70049327a/" className="text-gray-700 dark:text-gray-300 hover:text-violet-600">
             <FiLinkedin className="w-5 h-5" />
-          </motion.a>
+          </a>
 
-          {/* Hire Me Button */}
           <motion.button
             onClick={openContactForm}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              delay: 1.6,
-              duration: 0.8,
-              type: "spring",
-              stiffness: 100,
-              damping: 15,
-            }}
+            transition={{ delay: 1.6, duration: 0.8, type: "spring", stiffness: 100, damping: 15 }}
             className="ml-4 px-4 py-2 rounded-xl bg-gradient-to-r from-gray-400 to-gray-100 text-violet-700 font-bold hover:from-violet-700 hover:to-purple-700 hover:text-white transition-all duration-500"
           >
             Hire me
           </motion.button>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Nav Toggle */}
         <div className="md:hidden flex items-center">
           <motion.button
             whileTap={{ scale: 0.7 }}
@@ -143,10 +147,7 @@ export const Header = () => {
       {/* Mobile Menu */}
       <motion.div
         initial={{ opacity: 0, height: 0 }}
-        animate={{
-          opacity: isOpen ? 1 : 0,
-          height: isOpen ? "auto" : 0,
-        }}
+        animate={{ opacity: isOpen ? 1 : 0, height: isOpen ? "auto" : 0 }}
         transition={{ duration: 0.5 }}
         className="md:hidden overflow-hidden bg-white dark:bg-gray-900 shadow-lg px-4 py-5 space-y-5"
       >
@@ -161,17 +162,14 @@ export const Header = () => {
               {item}
             </a>
           ))}
-
-          {/* Special Download Button */}
-            <a
+          <a
             href="/images/cv-1.pdf"
             download="IanMendozaCV.pdf"
             onClick={toggleMenu}
             className="mt-2 block px-4 py-2 bg-gradient-to-r from-violet-600 to-pink-500 text-white text-center font-semibold rounded-lg shadow hover:brightness-110 transition duration-300"
-            >
+          >
             📄 Download CV
-            </a>
-
+          </a>
         </nav>
 
         <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
@@ -214,12 +212,7 @@ export const Header = () => {
               initial={{ scale: 0.8, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.8, opacity: 0, y: 30 }}
-              transition={{
-                type: "spring",
-                damping: 30,
-                stiffness: 200,
-                duration: 0.8,
-              }}
+              transition={{ type: "spring", damping: 30, stiffness: 200, duration: 0.8 }}
               className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-md p-6"
               onClick={(e) => e.stopPropagation()}
             >
@@ -230,48 +223,48 @@ export const Header = () => {
                 </button>
               </div>
 
-              <form className="space-y-4">
+              <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="user_name" className="block text-sm font-medium text-gray-300 mb-1">
                     Name
                   </label>
                   <input
                     type="text"
-                    id="name"
+                    name="user_name"
+                    required
                     placeholder="Your Name"
-                    className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700"
+                    className="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-700 focus:ring-2 focus:ring-violet-500"
                   />
                 </div>
-
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="user_email" className="block text-sm font-medium text-gray-300 mb-1">
                     Email
                   </label>
                   <input
                     type="email"
-                    id="email"
+                    name="user_email"
+                    required
                     placeholder="Your Email"
-                    className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700"
+                    className="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-700 focus:ring-2 focus:ring-violet-500"
                   />
                 </div>
-
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
                     Message
                   </label>
                   <textarea
+                    name="message"
                     rows="4"
-                    id="message"
+                    required
                     placeholder="How can we help you?"
-                    className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700"
+                    className="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-700 focus:ring-2 focus:ring-violet-500"
                   />
                 </div>
-
                 <motion.button
                   type="submit"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="w-full px-4 py-2 bg-gradient-to-r from-violet-600 to-violet-400 hover:from-violet-700 hover:to-purple-700 transition-all duration-300 rounded-lg shadow-md hover:shadow-lg text-white"
+                  className="w-full px-4 py-2 bg-gradient-to-r from-violet-600 to-violet-400 hover:from-violet-700 hover:to-purple-700 transition-all duration-300 rounded-lg text-white"
                 >
                   Send Message
                 </motion.button>
