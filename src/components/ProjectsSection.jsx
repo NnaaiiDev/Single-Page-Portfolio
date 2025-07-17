@@ -73,13 +73,13 @@ const ProjectsSection = () => {
     },
     {
       id: 's3',
-      title: 'CCNA: Introduction to Networks',
+      title: 'CCNA: Networks',
       imageSrc: '/images/ccna.png',
       link: 'https://www.credly.com/badges/06f3376c-dbe5-404a-bb6d-70caa7054641/public_url',
     },
     {
       id: 's4',
-      title: 'Secure Google Cloud Network',
+      title: 'Google Cloud Network',
       imageSrc: '/images/google.png',
       link: 'https://www.credly.com/badges/088a64a5-dfc3-4919-b51a-7e36d157ef29/public_url',
     },
@@ -237,10 +237,9 @@ const ProjectsSection = () => {
                   src={project.imageSrc}
                   alt="Project-img"
                 />
-                <h2 className="project-title flex items-center gap-3 text-xs sm:text-sm md:text-lg md:font-bold text-black mt-6 z-50 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
-                  {project.title} <SlShareAlt />
+                <h2 className="project-title flex items-center gap-3 text-[10px] sm:text-xs md:text-sm font-semibold text-black mt-4 z-50 text-center hover:text-gray-400 transition-colors duration-300 cursor-pointer">
+                {project.title} <SlShareAlt />
                 </h2>
-
               </div>
             </a>
           ))}
