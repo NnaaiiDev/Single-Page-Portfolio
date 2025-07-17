@@ -203,12 +203,15 @@ const ProjectsSection = () => {
     <section
       ref={refSet.sectionRef}
       id={sectionId}
-      className="relative py-20 bg-[#f6f6f6] overflow-hidden"
+       className="relative pt-0 pb-10 sm:pt-0 sm:pb-12 md:pt-0 md:pb-14 bg-[#f6f6f6] overflow-hidden"
+
+
+
     >
       <div className="container mx-auto px-4 mb-16 relative z-10">
         <h2
           ref={refSet.titleRef}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-4 opacity-0"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-0 opacity-0"
         >
           {title}
         </h2>
@@ -251,40 +254,40 @@ const ProjectsSection = () => {
   return (
     <>
         {/* Static section for Company Project */}
-        <section className="py-20 bg-[#f6f6f6]">
-          <div className="container mx-auto px-4 mb-8 sm:mb-12 md:mb-16">
-
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-80 ">
+        <section className="pt-2 pb-2 bg-[#f6f6f6]">
+          <div className="container mx-auto px-4 mb-0">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black text-center mb-4">
               Company Project
             </h2>
-          <div className="h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto w-full max-w-xs "></div>
-        </div>
-        <div className="flex justify-center">
-          <div className="relative w-full max-w-4xl flex flex-col items-center justify-center p-4 sm:p-8 md:p-12">
-            <img
-              className="project-image max-w-full max-h-full rounded-2xl object-cover"
-              src={projectImage[0].imageSrc}
-              alt="Company Project"
-            />
-            <h2 className="text-center flex items-center justify-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-6 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
-              {projectImage[0].title} 
-            </h2>
+            <div className="h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto w-full max-w-xs"></div>
           </div>
-        </div>
-      </section>
+          <div className="flex justify-center">
+            <div className="relative w-full max-w-4xl flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
+              <img
+                className="project-image max-w-full max-h-full rounded-2xl object-cover"
+                src={projectImage[0].imageSrc}
+                alt="Company Project"
+              />
+              <h2 className="text-center flex items-center justify-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-4 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
+                {projectImage[0].title}
+              </h2>
+            </div>
+          </div>
+        </section>
 
-      {renderSection(
-        {
-          sectionRef: sectionRef2,
-          titleRef: titleRef2,
-          titleLineRef: titleLineRef2,
-          triggerRef: triggerRef2,
-          horizontalRef: horizontalRef2,
-        },
-        'College Projects',
-        moreProjectImage,
-        'more-projects'
-      )}
+
+        {renderSection(
+          {
+            sectionRef: sectionRef2,
+            titleRef: titleRef2,
+            titleLineRef: titleLineRef2,
+            triggerRef: triggerRef2,
+            horizontalRef: horizontalRef2,
+          },
+          'College Projects',
+          moreProjectImage,
+          'more-projects'
+        )}
 
       {renderSection(
         {
