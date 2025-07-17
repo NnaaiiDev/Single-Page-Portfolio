@@ -240,8 +240,8 @@ const ProjectsSection = () => {
                   src={project.imageSrc}
                   alt="Project-img"
                 />
-                <h2 className="project-title flex items-center gap-3 text-[10px] sm:text-xs md:text-sm font-semibold text-black mt-4 z-50 text-center hover:text-gray-400 transition-colors duration-300 cursor-pointer">
-                {project.title} <SlShareAlt />
+                <h2 className="project-title flex items-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-6 z-50 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
+                  {project.title}  <SlShareAlt />
                 </h2>
               </div>
             </a>
@@ -268,7 +268,7 @@ const ProjectsSection = () => {
                 src={projectImage[0].imageSrc}
                 alt="Company Project"
               />
-              <h2 className="text-center flex items-center justify-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-4 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
+             <h2 className="text-center flex items-center justify-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-4 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
                 {projectImage[0].title}
               </h2>
             </div>
