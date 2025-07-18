@@ -95,7 +95,7 @@ const ContactSection = () => {
   return (
     <section id="contact"
       ref={sectionRef}
-      className="flex items-center justify-center bg-black relative"
+      className="flex items-center justify-center bg-black relative z-10 pt-50"
       style={{ overscrollBehavior: "none" }}
     >
       {/* Circle Container */}

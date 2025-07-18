@@ -4,15 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SlShareAlt } from 'react-icons/sl';
 
 const ProjectsSection = () => {
-  // eslint-disable-next-line no-unused-vars
+  gsap.registerPlugin(ScrollTrigger);
+
   const sectionRef1 = useRef(null);
-  // eslint-disable-next-line no-unused-vars
   const titleRef1 = useRef(null);
-  // eslint-disable-next-line no-unused-vars
   const titleLineRef1 = useRef(null);
-  // eslint-disable-next-line no-unused-vars
   const triggerRef1 = useRef(null);
-  // eslint-disable-next-line no-unused-vars
   const horizontalRef1 = useRef(null);
 
   const sectionRef2 = useRef(null);
@@ -28,7 +25,7 @@ const ProjectsSection = () => {
   const horizontalRef3 = useRef(null);
 
   const projectImage = [
-    { id: 1, title: 'Company Project', imageSrc: '/images/project-1-1.png' },
+    { id: 1, title: 'Socket Inventory System', imageSrc: '/images/project-1-1.png' },
   ];
 
   const moreProjectImage = [
@@ -67,7 +64,7 @@ const ProjectsSection = () => {
     },
     {
       id: 's2',
-      title: 'AWS Academy Cloud Foundations',
+      title: 'Academy Cloud Foundations',
       imageSrc: '/images/aws.png',
       link: 'https://www.credly.com/badges/e2cf9420-e457-4ac9-895d-245df5f21e98/public_url',
     },
@@ -85,7 +82,15 @@ const ProjectsSection = () => {
     },
   ];
 
-  const setupAnimations = (sectionRef, titleRef, titleLineRef, triggerRef, horizontalRef, images) => {
+  const setupAnimations = (
+    sectionRef,
+    titleRef,
+    titleLineRef,
+    triggerRef,
+    horizontalRef,
+    images,
+    nextSectionRef
+  ) => {
     gsap.fromTo(
       titleRef.current,
       { y: 100, opacity: 0 },
@@ -101,8 +106,6 @@ const ProjectsSection = () => {
         },
       }
     );
-
-    
 
     gsap.fromTo(
       titleLineRef.current,
@@ -154,79 +157,81 @@ const ProjectsSection = () => {
       }
     );
 
-    const horizontalScroll = gsap.to(horizontalRef.current.querySelectorAll('.panel'), {
-      xPercent: -100 * (images.length - 1),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: triggerRef.current,
-        start: 'top top',
-        end: () => `+=${horizontalRef.current.offsetWidth + 800}`,
-        pin: true,
-        scrub: 1,
-        snap: {
-          snapTo: 1 / (images.length - 1),
-          duration: { main: 0.2, max: 0.3 },
-          delay: 0.1,
-        },
-        invalidateOnRefresh: true,
-      },
-    });
-
-    const panels = gsap.utils.toArray(horizontalRef.current.querySelectorAll('.panel'));
-    panels.forEach((panel) => {
-      const image = panel.querySelector('.project-image');
-      const imageTitle = panel.querySelector('.project-title');
-
-      const tl = gsap.timeline({
+    if (images.length > 1) {
+      const horizontalScroll = gsap.to(horizontalRef.current.querySelectorAll('.panel'), {
+        xPercent: -100 * (images.length - 1),
+        ease: 'none',
         scrollTrigger: {
-          trigger: panel,
-          containerAnimation: horizontalScroll,
-          start: 'left right',
-          end: 'right left',
-          scrub: true,
+          trigger: triggerRef.current,
+          start: 'top top',
+          end: () => `+=${horizontalRef.current.offsetWidth + 5000}`,
+          pin: true,
+          scrub: 1,
+          snap: {
+            snapTo: 1 / (images.length - 1),
+            duration: { main: 0.2, max: 0.3 },
+            delay: 0.1,
+          },
+          invalidateOnRefresh: true,
         },
       });
 
-      tl.fromTo(image, { scale: 0, rotate: -20 }, { scale: 1, rotate: 1, duration: 0.5 });
+      const panels = gsap.utils.toArray(horizontalRef.current.querySelectorAll('.panel'));
+      panels.forEach((panel) => {
+        const image = panel.querySelector('.project-image');
+        const imageTitle = panel.querySelector('.project-title');
 
-      if (imageTitle) {
-        tl.fromTo(imageTitle, { y: 30 }, { y: -130, duration: 0.3 }, 0.2);
-      }
-    });
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: panel,
+            containerAnimation: horizontalScroll,
+            start: 'left center',
+            end: 'right center',
+            scrub: true,
+          },
+        });
 
-    // Add fade-out animation when scrolling into next section
-    gsap.fromTo(
-      triggerRef.current,
-      { opacity: 1 },
-      {
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power1.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'bottom bottom-=100', // adjust for when to start fading
-          end: 'bottom top+=200',     // adjust for how long it fades
-          scrub: true,
-        },
-      }
-    );
+        tl.fromTo(image, { scale: 0, rotate: -20 }, { scale: 1, rotate: 1, duration: 0.5 });
 
+        if (imageTitle) {
+          tl.fromTo(imageTitle, { y: 30 }, { y: -130, duration: 0.3 }, 0.2);
+        }
+      });
+    }
+
+    // ✅ Fade out only when next section starts to scroll in
+    if (nextSectionRef) {
+      gsap.fromTo(
+        triggerRef.current,
+        { opacity: 1 },
+        {
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power1.out',
+          scrollTrigger: {
+            trigger: nextSectionRef.current,
+            start: 'top bottom-=100',
+            end: 'top top+=200',
+            scrub: true,
+          },
+        }
+      );
+    }
   };
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    setupAnimations(sectionRef2, titleRef2, titleLineRef2, triggerRef2, horizontalRef2, moreProjectImage);
-    setupAnimations(sectionRef3, titleRef3, titleLineRef3, triggerRef3, horizontalRef3, seminarCertificates);
+    setupAnimations(sectionRef1, titleRef1, titleLineRef1, triggerRef1, horizontalRef1, projectImage, sectionRef2);
+    setupAnimations(sectionRef2, titleRef2, titleLineRef2, triggerRef2, horizontalRef2, moreProjectImage, sectionRef3);
+    setupAnimations(sectionRef3, titleRef3, titleLineRef3, triggerRef3, horizontalRef3, seminarCertificates, null);
   }, []);
 
-  const renderSection = (refSet, title, images, sectionId) => (
+  const renderSection = (refSet, title, images, sectionId, customClass = '') => (
     <section
       ref={refSet.sectionRef}
       id={sectionId}
-      className="relative pt-10 pb-12 sm:pt-14 sm:pb-16 bg-[#f6f6f6] overflow-hidden"
+      className={`relative pt-12 pb-12 bg-[#f6f6f6] overflow-hidden ${customClass}`}
     >
-      <div className="container mx-auto px-4 mb-6 sm:mb-10 relative z-10">
-
+      <div className="container mx-auto px-4 mb-6 relative z-10">
         <h2
           ref={refSet.titleRef}
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-4 opacity-0"
@@ -242,25 +247,25 @@ const ProjectsSection = () => {
       <div ref={refSet.triggerRef} className="overflow-hidden opacity-0">
         <div
           ref={refSet.horizontalRef}
-          className="horizontal-section flex md:w-[400%] w-[420%]"
+          className={`horizontal-section flex ${images.length > 1 ? 'md:w-[400%] w-[420%]' : 'w-full justify-center'}`}
         >
           {images.map((project) => (
             <a
               key={`${sectionId}-${project.id}`}
-              href={project.link}
+              href={project.link || '#'}
               target="_blank"
               rel="noopener noreferrer"
               className="panel relative flex items-center justify-center w-full"
             >
-              <div className="relative w-full h-full flex flex-col items-center justify-center p-2 sm:p-6 md:p-10">
-
+              <div className="relative w-full h-full flex flex-col items-center justify-center p-2 sm:p-6 md:p-10 z-[999]">
                 <img
                   className="project-image max-w-full max-h-full rounded-2xl object-cover"
                   src={project.imageSrc}
                   alt="Project-img"
                 />
-                <h2 className="project-title flex items-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-6 z-50 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
-                  {project.title}  <SlShareAlt />
+                <h2 className="project-title text-center flex flex-col items-center gap-2 md:text-3xl text-sm md:font-bold text-black mt-6 z-50 hover:text-gray-400 transition-colors duration-300 cursor-pointer leading-snug">
+                  {project.title}
+                  <SlShareAlt />
                 </h2>
               </div>
             </a>
@@ -272,29 +277,18 @@ const ProjectsSection = () => {
 
   return (
     <>
-      {/* Static section for Company Project */}
-        <section id="projects" className="pt-10 pb-0 sm:pt-14 sm:pb-0 bg-[#f6f6f6]">
-          <div className="container mx-auto px-4 mb-0">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-0">
-              Company Project
-            </h2>
-            <div className="h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto w-full max-w-xs" />
-          </div>
-          <div className="flex justify-center mt-0">
-            <div className="relative w-full max-w-4xl flex flex-col items-center justify-center p-4 sm:p-8 md:p-12">
-              <img
-                className="project-image max-w-full max-h-full rounded-2xl object-cover"
-                src={projectImage[0].imageSrc}
-                alt="Company Project"
-              />
-              <h2 className="text-center flex items-center justify-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-4 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
-                {projectImage[0].title}
-              </h2>
-            </div>
-          </div>
-        </section>
-
-
+      {renderSection(
+        {
+          sectionRef: sectionRef1,
+          titleRef: titleRef1,
+          titleLineRef: titleLineRef1,
+          triggerRef: triggerRef1,
+          horizontalRef: horizontalRef1,
+        },
+        'Company Project',
+        projectImage,
+        'projects'
+      )}
 
       {renderSection(
         {
