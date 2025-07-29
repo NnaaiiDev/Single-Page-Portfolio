@@ -75,7 +75,7 @@ const ProjectsSection = () => {
       id: 'd',
       title: 'Capstone System',
       description:
-        'A classroom environment monitoring system using sensors to track temperature, air quality, and more.',
+        'A classroom environment monitoring system using sensors to track temperature, humidity, air quality, light levels (lux), and volcanic Smog.',
       imageSrc: '/images/lems.png',
       link: 'https://github.com/Heracles404/learning-environment-monitoring-system',
     },
@@ -353,9 +353,13 @@ const ProjectsSection = () => {
                       <h2 className="text-2xl font-semibold mb-4 text-center text-black">
                         {project.title}
                       </h2>
-                      <p className="mb-6 text-black text-justify max-w-prose">
+                      <p
+                        className="mb-6 text-black text-justify max-w-prose"
+                        style={{ fontSize: '2.0rem', lineHeight: '3.75rem' }}
+                      >
                         {project.description}
                       </p>
+
                       <a
                         href={project.link}
                         target="_blank"
