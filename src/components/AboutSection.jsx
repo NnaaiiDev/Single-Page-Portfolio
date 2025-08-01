@@ -196,8 +196,8 @@ const AboutSection = () => {
             I am currently an Intern at STMicroelectronics, in Calamba, Laguna.
             STMicroelectronics is renowned for its high-tech semiconductor
             manufacturing operations. The company is dedicated to delivering
-            intelligent and energy-efficient semiconductor solutions that power
-            modern electronics—from smart homes and factories to automotive
+            intelligent and energy efficient semiconductor solutions that power
+            modern electronics from smart homes and factories to automotive
             systems and IoT devices.
           </p>
         </div>
